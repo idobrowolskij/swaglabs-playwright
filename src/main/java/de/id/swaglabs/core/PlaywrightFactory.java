@@ -2,24 +2,27 @@ package de.id.swaglabs.core;
 
 import com.microsoft.playwright.*;
 
-public class PlayWrightFactory {
+public class PlaywrightFactory {
     private static Playwright playwright;
     private static Browser browser;
 
-    public static Page createPage() {
+    public static Browser getBrowser() {
         if (playwright == null) {
             playwright = Playwright.create();
         }
 
         if (browser == null) {
-            browser = playwright.chromium().launch(new BrowserType.LaunchOptions());
+            browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
         }
 
-        BrowserContext context = browser.newContext();
-        return context.newPage();
+        return browser;
     }
 
-    public static void shutDown() {
+    public static BrowserContext createContext() {
+        return getBrowser().newContext();
+    }
+
+    public static void shutdown() {
         if (browser != null) {
             browser.close();
             browser = null;
