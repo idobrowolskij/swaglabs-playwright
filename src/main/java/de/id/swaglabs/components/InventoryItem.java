@@ -1,6 +1,7 @@
 package de.id.swaglabs.components;
 
 import com.microsoft.playwright.Locator;
+import com.microsoft.playwright.options.AriaRole;
 
 public class InventoryItem {
     private final Locator root;
@@ -22,6 +23,10 @@ public class InventoryItem {
     }
 
     public void addToCart() {
-        root.locator("button").click();
+        root.getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions().setName("Add to cart")).click();
+    }
+
+    public void remove() {
+        root.getByRole(AriaRole.BUTTON, new Locator.GetByRoleOptions().setName("Remove")).click();
     }
 }
