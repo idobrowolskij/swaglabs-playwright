@@ -30,11 +30,11 @@ public class ProductsTest extends BaseTest {
     @Test
     void productShouldAddToCart() {
         loginPage.login(TestConfig.standardUser(), TestConfig.password());
-        assertTrue(productsPage.isAt(), "Expected to be on product page");
+        productsPage.waitUntilLoaded();
         productsPage.addProductByIndex(0);
         String productName = productsPage.getInventoryItemNameByIndex(0);
         productsPage.goToShoppingCart();
-        assertTrue(cartPage.isAt(), "Expected to be in shopping cart");
+        cartPage.waitUntilLoaded();
         assertEquals(1, cartPage.getCartItemCount());
         String cartItemname = cartPage.getCartItemNameByIndex(0);
         assertEquals(productName, cartItemname);
@@ -43,7 +43,7 @@ public class ProductsTest extends BaseTest {
     @Test
     void productShouldRemoveFromCart() {
         loginPage.login(TestConfig.standardUser(), TestConfig.password());
-        assertTrue(productsPage.isAt(), "Expected to be on product page");
+        productsPage.waitUntilLoaded();
         productsPage.addProductByIndex(0);
         productsPage.waitForCartBadgeCount(1);
         assertEquals(1, productsPage.getShoppingCartBadgeCount());
@@ -55,7 +55,7 @@ public class ProductsTest extends BaseTest {
     @Test
     void productsShouldSortFromZtoA() {
         loginPage.login(TestConfig.standardUser(), TestConfig.password());
-        assertTrue(productsPage.isAt());
+        productsPage.waitUntilLoaded();
         productsPage.selectZToASorting();
         List<String> actual = productsPage.getAllProductNames();
         List<String> expected = new ArrayList<>(actual);
@@ -66,7 +66,7 @@ public class ProductsTest extends BaseTest {
     @Test
     void productsShouldSortFromLowToHigh() {
         loginPage.login(TestConfig.standardUser(), TestConfig.password());
-        assertTrue(productsPage.isAt());
+        productsPage.waitUntilLoaded();
         productsPage.selectLowToHighSorting();
         List<BigDecimal> actual = productsPage.getAllProductPrices();
         List<BigDecimal> expected = new ArrayList<>(actual);
