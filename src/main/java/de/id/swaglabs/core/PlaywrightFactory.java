@@ -5,6 +5,7 @@ import com.microsoft.playwright.*;
 public class PlaywrightFactory {
     private static Playwright playwright;
     private static Browser browser;
+    private static boolean shutdownHookRegistered = false;
 
     public static Browser getBrowser() {
         if (playwright == null) {
@@ -13,6 +14,11 @@ public class PlaywrightFactory {
 
         if (browser == null) {
             browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
+        }
+
+        if (!shutdownHookRegistered) {
+            shutdownHookRegistered = true;
+            Runtime.getRuntime().addShutdownHook(new Thread(PlaywrightFactory::shutdown));
         }
 
         return browser;
