@@ -27,6 +27,7 @@ public class LoginTest extends BaseTest {
     @Test
     void shouldLoginWithValidCredentials() {
         loginPage.login(TestConfig.standardUser(), TestConfig.password());
+        assertTrue(loginPage.getErrorMessage().isEmpty());
         productsPage.waitUntilLoaded();
     }
 
