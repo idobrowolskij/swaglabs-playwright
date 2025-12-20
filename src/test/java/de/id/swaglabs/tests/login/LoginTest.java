@@ -35,7 +35,6 @@ public class LoginTest extends BaseTest {
     void shouldShowErrorOnInvalidLogin() {
         loginPage.login("wrongUser", "wrongPassword");
         String error = loginPage.getErrorMessage();
-        System.out.println("Error: " + error);
         assertFalse(error.isEmpty(), "Error message should not be empty");
     }
 }
