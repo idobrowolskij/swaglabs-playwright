@@ -3,14 +3,17 @@ package de.id.swaglabs.tests.overview;
 import de.id.swaglabs.components.InventoryItem;
 import de.id.swaglabs.config.TestConfig;
 import de.id.swaglabs.core.BaseTest;
+import de.id.swaglabs.core.PlaywrightArtifactsExtension;
 import de.id.swaglabs.pages.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(PlaywrightArtifactsExtension.class)
 public class CheckoutOverviewTest extends BaseTest {
     private LoginPage loginPage;
     private ProductsPage productsPage;

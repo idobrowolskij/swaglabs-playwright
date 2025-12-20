@@ -8,8 +8,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class BaseTest {
-    protected BrowserContext context;
-    protected Page page;
+    protected static BrowserContext context;
+    protected static Page page;
+
+    public static BrowserContext getContext() { return context; }
+    public static Page getPage() { return page; }
 
     @BeforeAll
     static void globalSetup() {

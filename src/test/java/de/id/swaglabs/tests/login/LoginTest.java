@@ -2,12 +2,16 @@ package de.id.swaglabs.tests.login;
 
 import de.id.swaglabs.config.TestConfig;
 import de.id.swaglabs.core.BaseTest;
+import de.id.swaglabs.core.PlaywrightArtifactsExtension;
 import de.id.swaglabs.pages.LoginPage;
 import de.id.swaglabs.pages.ProductsPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+@ExtendWith(PlaywrightArtifactsExtension.class)
 public class LoginTest extends BaseTest {
 
     private LoginPage loginPage;
